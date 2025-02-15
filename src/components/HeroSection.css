@@ -1,0 +1,76 @@
+.hero {
+    background-image: url('C:\Users\bodap\OneDrive\Documents\RouteCraftersDocs\route-crafters-client\public\images\design_AD.jpg'); /* Replace with the correct path to your image */
+    background-size: cover;
+    background-position: center;
+    background-color: black;
+    height: 100vh; /* Adjust based on your desired height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: black; /* Ensure text is visible over the background */
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* Ensure background is clipped neatly */
+    animation: fadeInBackground 10s infinite alternate;
+    
+  }
+  
+  .hero h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards 1s;
+    
+  }
+  
+  .hero p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards 1s; 
+    
+  }
+  
+  .hero button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #ff7a00; /* Customize button color */
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards 1.5s;
+  }
+  
+  .hero button:hover {
+    background-color: #e66c00; /* Darken button on hover */
+    transform: scale(1.1);
+  }
+  
+  /* Fade-in animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  
+  /* Background fade animation */
+  @keyframes fadeInBackground {
+    0% {
+      background-image: url('D:\Kavya III-II docs\FSD-app\Hobby-travel-match-maker\public\images\design_AD.jpg');
+      opacity: 0.8;
+    }
+    50% {
+      background-image: url('D:\Kavya III-II docs\FSD-app\Hobby-travel-match-maker\public\images\design_AD.jpg');
+      opacity: 0.6;
+    }
+    100% {
+      background-image: url('D:\Kavya III-II docs\FSD-app\Hobby-travel-match-maker\public\images\design_AD.jpg');
+      opacity: 0.8;
+    }
+  }
