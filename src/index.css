@@ -1,99 +1,182 @@
-.hero {
-    background-image: url('C:\Users\bodap\OneDrive\Documents\RouteCraftersDocs\route-crafters-client\public\images\design_AD.jpg'); /* Replace with the correct path to your image */
-    background-size: cover;
-    background-position: center;
-    background-color: black;
-    height: 100vh; /* Adjust based on your desired height */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: black; /* Ensure text is visible over the background */
-    text-align: center;
-    position: relative;
-    overflow: hidden; /* Ensure background is clipped neatly */
-    animation: fadeInBackground 10s infinite alternate;
-    
-  }
-  
-  .hero h2 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    opacity: 0;
-    animation: fadeIn 0.5s ease-out forwards 1s;
-    
-  }
-  
-  .hero p {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    opacity: 0;
-    animation: fadeIn 0.5s ease-out forwards 1s; 
-    
-  }
-  
-  .hero button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: #ff7a00; /* Customize button color */
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    opacity: 0;
-    animation: fadeIn 0.5s ease-out forwards 1.5s;
-  }
-  
-  .hero button:hover {
-    background-color: #e66c00; /* Darken button on hover */
-    transform: scale(1.1);
-  }
-  
-  /* Fade-in animation */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 0;
-    }
-  }
-  
-  /* Background fade animation */
-  @keyframes fadeInBackground {
-    0% {
-      background-image: url('D:\Kavya III-II docs\FSD-app\Hobby-travel-match-maker\public\images\design_AD.jpg');
-      opacity: 0.8;
-    }
-    50% {
-      background-image: url('D:\Kavya III-II docs\FSD-app\Hobby-travel-match-maker\public\images\design_AD.jpg');
-      opacity: 0.6;
-    }
-    100% {
-      background-image: url('D:\Kavya III-II docs\FSD-app\Hobby-travel-match-maker\public\images\design_AD.jpg');
-      opacity: 0.8;
-    }
-  }
+/* ==============================
+   Global Styles
+   ============================== */
+   body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
 
-  .navbar {
+/* ==============================
+   Navbar Styles
+   ============================== */
+.navbar {
     background: #007bff;
     padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: white;
-  }
-  
-  .navbar ul {
+}
+
+.navbar ul {
     list-style: none;
     display: flex;
-  }
-  
-  .navbar ul li {
+    padding: 0;
+    margin: 0;
+}
+
+.navbar ul li {
     margin-left: 20px;
-  }
-  
-  .navbar a {
+}
+
+.navbar a {
     color: white;
     text-decoration: none;
-  }
+}
+
+/* ==============================
+   Hero Section Styles (Background Image)
+   ============================== */
+.hero {
+    background-image: url('/images/design_AD.jpg');  /* ✅ Ensure the image is inside the public/ folder */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    z-index: 1;
+}
+
+/* ✅ Overlay to darken the background for better contrast */
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: -1;
+}
+
+.hero h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards 1s;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards 1s;
+}
+
+.hero button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #ff7a00;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards 1.5s;
+}
+
+.hero button:hover {
+    background-color: #e66c00;
+    transform: scale(1.1);
+}
+
+/* ==============================
+   Features Section
+   ============================== */
+.features {
+    background-color: #f9f9f9;
+    padding: 50px 20px;
+    text-align: center;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.features h2 {
+    font-size: 3rem;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards 0.5s;
+}
+
+.feature-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.feature {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0;
+    animation: fadeInFeature 1s ease-out forwards 1s;
+}
+
+.feature h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+.feature p {
+    font-size: 1rem;
+}
+
+.feature:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+/* ==============================
+   Animations
+   ============================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInFeature {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* ==============================
+   Footer Styles
+   ============================== */
+.footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
