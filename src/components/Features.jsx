@@ -1,5 +1,5 @@
 // import React frmm,........om "react";
-import "./features.css";
+// import "./features.css";
 
 const features = [
   { title: "Interest-Based Destination Recommendations", desc: "Get travel suggestions based on your hobbies and interests." },
