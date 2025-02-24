@@ -1,16 +1,11 @@
 import { useState, useEffect } from "react";
-
 import HeroSection from "../components/HeroSection";
+import HobbiesSection from "../components/HobbiesSection";  // ✅ Import HobbiesSection
 import Features from "../components/Features";
 import Footer from "../components/Footer";
 import Navbar from "../components/NavBar";
 
-
-
-
 const Home = () => {
-
-  
   const [showBackToTop, setShowBackToTop] = useState(false);
 
   const handleScroll = () => {
@@ -22,15 +17,13 @@ const Home = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
-  
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <HeroSection />
+      <HobbiesSection />  {/* ✅ Add HobbiesSection here */}
       <Features />
       <Footer />
-      
 
       {/* Back to Top Button */}
       {showBackToTop && (
