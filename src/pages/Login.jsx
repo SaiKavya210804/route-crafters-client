@@ -1,58 +1,72 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "../index.css"; // Ensure CSS is imported
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Handle login logic here
-    alert(`Logged in with Email: ${email}`);
+    setError("");
+
+    try {
+      const response = await fetch("/users.json");
+      const users = await response.json();
+
+      const user = users.find((u) => u.email === email && u.password === password);
+
+      if (user) {
+        alert(`Welcome, ${user.username}!`);
+        navigate("/dashboard"); // Redirects after login
+      } else {
+        setError("Invalid email or password. Please try again.");
+      }
+    } catch (err) {
+      console.error("Error loading user data:", err);
+      setError("Error loading user data.");
+    }
   };
 
   return (
-    <section style={{ padding: "2rem", textAlign: "center" }}>
-      <h1>Login</h1>
-      <form onSubmit={handleLogin} style={{ maxWidth: "400px", margin: "0 auto" }}>
-        <div style={{ marginBottom: "1rem" }}>
-          <label style={{ display: "block", marginBottom: ".5rem" }} htmlFor="email">Email:</label>
+    <div className="login-container">
+      <div className="login-box">
+        <h1>Login</h1>
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        <form onSubmit={handleLogin}>
+          <label htmlFor="email">Email:</label>
           <input
             type="email"
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            style={{ width: "100%", padding: ".5rem" }}
             required
           />
-        </div>
-        <div style={{ marginBottom: "1rem" }}>
-          <label style={{ display: "block", marginBottom: ".5rem" }} htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            style={{ width: "100%", padding: ".5rem" }}
-            required
-          />
-        </div>
-        <button
-          type="submit"
-          style={{
-            backgroundColor: "#4CAF50",
-            color: "white",
-            padding: "0.5rem 1rem",
-            border: "none",
-            cursor: "pointer",
-          }}
-        >
-          Login
-        </button>
-      </form>
-      <p style={{ marginTop: "1rem" }}>
-        Do not have an account? <a href="/signup">Sign up here</a>.
-      </p>
-    </section>
+          <label htmlFor="password">Password:</label>
+          <div className="password-container">
+            <input
+              type={showPassword ? "text" : "password"}
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <span className="toggle-password" onClick={() => setShowPassword(!showPassword)}>
+              {showPassword ? "🙈" : "👁️"}
+            </span>
+          </div>
+          <button type="submit">Login</button>
+        </form>
+        <p className="signup-text">
+          Do not have an account? <br />
+          <a href="/register">Sign up here</a>.
+        </p>
+
+      </div>
+    </div>
   );
 };
 
