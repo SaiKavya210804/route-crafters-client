@@ -15,8 +15,9 @@ const Login = () => {
 
     try {
       const response = await fetch("/users.json");
-      const users = await response.json();
+      if (!response.ok) throw new Error("Failed to fetch users");
 
+      const users = await response.json();
       const user = users.find((u) => u.email === email && u.password === password);
 
       if (user) {
@@ -55,7 +56,7 @@ const Login = () => {
               required
             />
             <span className="toggle-password" onClick={() => setShowPassword(!showPassword)}>
-              {showPassword ? "🙈" : "👁️"}
+              {showPassword ? "🙈" : "👁"}
             </span>
           </div>
           <button type="submit">Login</button>
@@ -64,7 +65,6 @@ const Login = () => {
           Do not have an account? <br />
           <a href="/register">Sign up here</a>.
         </p>
-
       </div>
     </div>
   );

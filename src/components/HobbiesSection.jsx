@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const hobbies = [
-  { title: "Photography", img: "C:\Users\bodap\OneDrive\Documents\Hobby-travel-match-maker\route-crafters-client\public\images\Hobby1_photography.jpg"},
-  { title: "Cycling", img: "C:\Users\bodap\OneDrive\Documents\Hobby-travel-match-maker\route-crafters-client\public\images\hobby2_cycling.jpg"},
-  { title: "Food Tasting", img: "C:\Users\bodap\OneDrive\Documents\Hobby-travel-match-maker\route-crafters-client\public\images\hobby2_foodtasting.jpg"},
-  { title: "Trekking", img: "C:\Users\bodap\OneDrive\Documents\Hobby-travel-match-maker\route-crafters-client\public\images\hobby3_trekking.jpg"}
+  { title: "Photography", img: "/images/Hobby1_photography.jpg"},
+  { title: "Cycling", img: "/images/hobby2_cycling.jpg"},
+  { title: "Food Tasting", img: "/images/hobby2_foodtasting.jpg"},
+  { title: "Trekking", img: "/images/hobby3_trekking.jpg"}
 ];
 
 const HobbiesSection = () => {

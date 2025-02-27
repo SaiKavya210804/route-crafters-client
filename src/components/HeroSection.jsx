@@ -16,6 +16,7 @@ const HeroSection = () => {
   const [index, setIndex] = useState(0);
   const [fade, setFade] = useState(true);
 
+  // Auto change background every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setFade(false);
@@ -24,10 +25,11 @@ const HeroSection = () => {
         setFade(true);
       }, 500);
     }, 5000);
-
+    
     return () => clearInterval(interval);
   }, []);
 
+  // Previous and Next button functionality
   const prevSlide = () => {
     setFade(false);
     setTimeout(() => {
@@ -45,30 +47,30 @@ const HeroSection = () => {
   };
 
   return (
-    <>
+    <section className="hero">
+      {/* Background Image */}
+      <div
+        className={`hero-background ${fade ? "fade-in" : "fade-out"}`}
+        style={{ backgroundImage: `url(${images[index]})` }}
+      ></div>
 
-      {/* Hero Section */}
-      <section className="hero">
-        <div
-          className={`hero-background ${fade ? "fade-in" : "fade-out"}`}
-          style={{ backgroundImage: `url(${images[index]})` }}
-        ></div>
+      {/* Overlay Content */}
+      <div className="hero-overlay">
+        <h2>Your world of joy</h2>
+        <p>From local escapes to far-flung adventures, find what makes you happy anytime, anywhere.</p>
 
-        <div className="hero-overlay">
-          <h2>Your world of joy</h2>
-          <p>From local escapes to far-flung adventures, find what makes you happy anytime, anywhere.</p>
-
-          <div className="search-container">
-            <Search className="search-icon" />
-            <input type="text" placeholder="Search destinations..." />
-            <button className="search-btn">Search</button>
-          </div>
-
-          <button className="prev" onClick={prevSlide}>&#10094;</button>
-          <button className="next" onClick={nextSlide}>&#10095;</button>
+        {/* Search Bar */}
+        <div className="search-container">
+          <Search className="search-icon" />
+          <input type="text" placeholder="Search destinations..." />
+          <button className="search-btn">Search</button>
         </div>
-      </section>
-    </>
+      </div>
+
+      {/* Navigation Buttons */}
+      <button className="prev" onClick={prevSlide}>&#10094;</button>
+      <button className="next" onClick={nextSlide}>&#10095;</button>
+    </section>
   );
 };
 
