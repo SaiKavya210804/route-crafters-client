@@ -312,7 +312,7 @@
 }
 
 .login-box input {
-    width: 100%;
+    width: 95%;
     padding: 10px;
     margin-bottom: 1rem;
     border: 1px solid #ccc;
@@ -405,7 +405,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    padding: 100px 20px 20px;
+    overflow-y: auto;
     background: linear-gradient(to right, #ff7a00, #ffcc00);
 }
 
@@ -420,7 +422,7 @@
 }
 
 .signup-box h1 {
-    color: #333;
+    color: firebrick;
     margin-bottom: 1rem;
 }
 
@@ -436,13 +438,15 @@
     display: block;
 }
 
-.signup-box input {
+.signup-box input, .custom-select {
     width: 100%;
     padding: 10px;
     margin-bottom: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
+    appearance: none;
+
 }
 
 .signup-box button {
