@@ -1,33 +1,34 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import Profile from "../pages/Profile"; // ✅ Import Profile component
 
 const Dashboard = () => {
-  const [user, setUser] = useState(null);
+  const location = useLocation();
   const navigate = useNavigate();
+  const user = location.state?.user; // ✅ Get user data from navigation
 
   useEffect(() => {
-    // Check if user is authenticated
-    const isAuthenticated = localStorage.getItem("isAuthenticated");
-    const users = JSON.parse(localStorage.getItem("user"));
-
-    if (!isAuthenticated || !users) {
-      navigate("/login"); // Redirect to login if not authenticated
-    } else {
-      setUser(users);
+    if (!user) {
+      navigate("/login"); // Redirect to login if no user data
     }
-  }, [navigate]);
+  }, [user, navigate]);
 
   const handleLogout = () => {
-    localStorage.removeItem("isAuthenticated");
-    localStorage.removeItem("user");
     navigate("/login"); // Redirect to login after logout
   };
 
   return (
     <div className="dashboard-container">
       <h1>Welcome to Your Dashboard</h1>
-      {user && <h2>Hello, {user.email}!</h2>}
-      
+      {user ? (
+        <>
+          <h2>Hello, {user.name}!</h2>
+          <Profile user={user} /> {/* ✅ Render Profile Component */}
+        </>
+      ) : (
+        <p>No user data available. Redirecting...</p>
+      )}
+
       <button onClick={handleLogout} className="logout-btn">
         Logout
       </button>
