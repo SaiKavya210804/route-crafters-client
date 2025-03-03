@@ -1,34 +1,41 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "../index.css"; // Ensure CSS is imported
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState("");
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: ""
+  });
+
   const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setCredentials({ ...credentials, [name]: value });
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError("");
 
     try {
-      const response = await fetch("/users.json");
-      if (!response.ok) throw new Error("Failed to fetch users");
+      // Fetch user data from the backend
+      const response = await axios.get("http://localhost:3000/users");
+      const users = response.data;
 
-      const users = await response.json();
-      const user = users.find((u) => u.email === email && u.password === password);
+      // Check if user exists
+      const user = users.find((u) => u.email === credentials.email && u.password === credentials.password);
 
       if (user) {
-        alert(`Welcome, ${user.username}!`);
-        navigate("/dashboard"); // Redirects after login
+        localStorage.setItem("isAuthenticated", "true"); // Store authentication state
+        alert("Login successful!");
+        navigate("/dashboard"); // ✅ Redirect to Dashboard page
       } else {
-        setError("Invalid email or password. Please try again.");
+        alert("Invalid email or password.");
       }
-    } catch (err) {
-      console.error("Error loading user data:", err);
-      setError("Error loading user data.");
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("Failed to login. Please try again.");
     }
   };
 
@@ -36,34 +43,18 @@ const Login = () => {
     <div className="login-container">
       <div className="login-box">
         <h1>Login</h1>
-        {error && <p style={{ color: "red" }}>{error}</p>}
         <form onSubmit={handleLogin}>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <label htmlFor="password">Password:</label>
-          <div className="password-container">
-            <input
-              type={showPassword ? "text" : "password"}
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            <span className="toggle-password" onClick={() => setShowPassword(!showPassword)}>
-              {showPassword ? "🙈" : "👁"}
-            </span>
-          </div>
+          <label>Email</label>
+          <input type="email" name="email" placeholder="Enter your email" value={credentials.email} onChange={handleChange} required />
+          
+          <label>Password</label>
+          <input type="password" name="password" placeholder="Enter your password" value={credentials.password} onChange={handleChange} required />
+          
           <button type="submit">Login</button>
         </form>
-        <p className="signup-text">
-          Do not have an account? <br />
-          <a href="/register">Sign up here</a>.
+        
+        <p>
+          Do not have an account? <Link to="/signup">Sign up here</Link>
         </p>
       </div>
     </div>

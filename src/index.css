@@ -493,3 +493,65 @@
     font-size: 16px;
     color: #555;
 }
+
+/* ==============================
+   Dashboard Styles
+   ============================== */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background: #f4f4f4;
+    color: #333;
+}
+
+.dashboard-header {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #ff7a00;
+}
+
+.dashboard-subtext {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.dashboard-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.dashboard-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+}
+
+.logout-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.logout-btn:hover {
+    background-color: #cc0000;
+}

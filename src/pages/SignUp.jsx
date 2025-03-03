@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import axios from "axios";
+
 const cityStateNationality = {
   "New York": { state: "New York", nationality: "USA" },
   "Los Angeles": { state: "California", nationality: "USA" },
@@ -35,7 +37,7 @@ const SignUp = () => {
     setFormData(updatedData);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
@@ -43,10 +45,17 @@ const SignUp = () => {
       return;
     }
 
-    //raise axios
+    // Store user data in localStorage
+    // localStorage.setItem("user", JSON.stringify({ 
+    //   email: formData.email, 
+    //   password: formData.password 
+    // }));
+
+    await axios.post("http://localhost:3000/users", formData)
+    
 
     setIsSuccess(true);
-    setTimeout(() => navigate("/"), 3000);
+    setTimeout(() => navigate("/login"), 3000);
   };
 
   return (
@@ -55,7 +64,7 @@ const SignUp = () => {
         {isSuccess ? (
           <div className="success-message">
             <h2>Signup Successful!</h2>
-            <p>Redirecting to homepage...</p>
+            <p>Redirecting to login...</p>
           </div>
         ) : (
           <>
@@ -99,7 +108,7 @@ const SignUp = () => {
                   <option key={nationality} value={nationality}>{nationality}</option>
                 ))}
               </select>
-              
+
               <button type="submit">Sign Up</button>
             </form>
             
