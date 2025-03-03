@@ -555,3 +555,56 @@
 .logout-btn:hover {
     background-color: #cc0000;
 }
+
+/* ==============================
+   Profile Styles
+   ============================== */
+
+   .profile-container {
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+  }
+  
+  .profile-btn {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .profile-box {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 200px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .profile-box p {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+  
+  .profile-box button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  
