@@ -10,7 +10,6 @@ const Navbar = () => {
         <Link to="/">Home</Link>
         <Link to="/explore">Explore</Link>
         <Link to="/about">About</Link>
-
         {!isAuthenticated ? (
           <>
             <Link to="/login">Login</Link>
@@ -20,13 +19,8 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <Link to="/profile">Profile</Link>
-            <button className="logout-btn" onClick={() => {
-              localStorage.removeItem("isAuthenticated");
-              window.location.href = "/login"; // Redirect after logout
-            }}>
-              Logout
-            </button>
+            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/profile">Profile</Link> {/* Profile button visible after login */}
           </>
         )}
       </div>
