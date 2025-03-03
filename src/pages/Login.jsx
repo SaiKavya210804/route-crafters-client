@@ -28,6 +28,7 @@ const Login = () => {
 
       if (user) {
         localStorage.setItem("isAuthenticated", "true"); // Store authentication state
+        localStorage.setItem("user", JSON.stringify(user)); // Store user data
         alert("Login successful!");
         navigate("/dashboard"); // ✅ Redirect to Dashboard page
       } else {

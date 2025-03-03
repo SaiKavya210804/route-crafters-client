@@ -6,27 +6,28 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) {
-      navigate("/login"); // Redirect to login if no user data
+    // Check if user is authenticated
+    const isAuthenticated = localStorage.getItem("isAuthenticated");
+    const users = JSON.parse(localStorage.getItem("user"));
+
+    if (!isAuthenticated || !users) {
+      navigate("/login"); // Redirect to login if not authenticated
+    } else {
+      setUser(users);
     }
-  }, [user, navigate]);
+  }, [navigate]);
 
   const handleLogout = () => {
+    localStorage.removeItem("isAuthenticated");
+    localStorage.removeItem("user");
     navigate("/login"); // Redirect to login after logout
   };
 
   return (
     <div className="dashboard-container">
       <h1>Welcome to Your Dashboard</h1>
-      {user ? (
-        <>
-          <h2>Hello, {user.name}!</h2>
-          <Profile user={user} /> {/* ✅ Render Profile Component */}
-        </>
-      ) : (
-        <p>No user data available. Redirecting...</p>
-      )}
-
+      {user && <h2>Hello, {user.email}!</h2>}
+      
       <button onClick={handleLogout} className="logout-btn">
         Logout
       </button>
