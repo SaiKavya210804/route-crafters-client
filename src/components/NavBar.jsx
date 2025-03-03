@@ -1,8 +1,7 @@
+import React from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const isAuthenticated = localStorage.getItem("isAuthenticated");
-
   return (
     <nav className="navbar">
       <div className="logo">Hobby Travel Matchmaker</div>
@@ -10,6 +9,7 @@ const Navbar = () => {
         <Link to="/">Home</Link>
         <Link to="/explore">Explore</Link>
         <Link to="/about">About</Link>
+<<<<<<< HEAD
         {!isAuthenticated ? (
           <>
             <Link to="/login">Login</Link>
@@ -23,6 +23,12 @@ const Navbar = () => {
             <Link to="/profile">Profile</Link> {/* Profile button visible after login */}
           </>
         )}
+=======
+        <Link to="/login">Login</Link>
+        <Link to="/signup">
+          <button className="signup-btn">Sign Up</button>
+        </Link>
+>>>>>>> parent of 663e3aa (created a profile page)
       </div>
     </nav>
   );

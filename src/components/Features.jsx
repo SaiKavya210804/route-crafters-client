@@ -1,5 +1,5 @@
-// import React from "react";
-import { MapPin, Users, BookOpen, Globe, Leaf, List, Compass } from "lucide-react";
+import React from "react";
+import { MapPin, Users, BookOpen, Globe, Leaf, Calendar, List, Compass } from "lucide-react";
 //import "./features.css";
 
 const features = [

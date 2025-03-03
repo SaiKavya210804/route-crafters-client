@@ -24,13 +24,12 @@ const Login = () => {
       const users = response.data;
 
       // Check if user exists
-      const user = users.find(
-        (u) => u.email === credentials.email && u.password === credentials.password
-      );
+      const user = users.find((u) => u.email === credentials.email && u.password === credentials.password);
 
       if (user) {
+        localStorage.setItem("isAuthenticated", "true"); // Store authentication state
         alert("Login successful!");
-        navigate("/dashboard", { state: { user } }); // ✅ Pass user data to Dashboard
+        navigate("/dashboard"); // ✅ Redirect to Dashboard page
       } else {
         alert("Invalid email or password.");
       }
