@@ -20,7 +20,7 @@ const Login = () => {
 
     try {
       // Fetch user data from the backend
-      const response = await axios.get("http://localhost:3000/users");
+      const response = await axios.get("https://route-crafters-server.onrender.com/users");
       const users = response.data;
 
       // Check if user exists

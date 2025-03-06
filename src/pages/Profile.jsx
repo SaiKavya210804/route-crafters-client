@@ -6,7 +6,7 @@ const Profile = () => {
 
   useEffect(() => {
     // Fetch all profiles from db.json
-    axios.get("http://localhost:3000/users")
+    axios.get("https://route-crafters-server.onrender.com/users")
       .then((response) => setProfiles(response.data))
       .catch((error) => console.error("Error fetching profiles:", error));
   }, []);

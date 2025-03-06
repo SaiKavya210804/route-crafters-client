@@ -51,7 +51,7 @@ const SignUp = () => {
     //   password: formData.password 
     // }));
 
-    await axios.post("http://localhost:3000/users", formData)
+    await axios.post("https://route-crafters-server.onrender.com/users", formData)
     
 
     setIsSuccess(true);
