@@ -842,3 +842,190 @@
         padding: 10px;
     }
 }
+
+/* About Page Styles */
+.about-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    transition: transform 0.3s ease-in-out;
+}
+
+.about-container:hover {
+    transform: scale(1.02);
+}
+
+.about-container h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.about-container p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.about-container strong {
+    font-weight: 600;
+    color: #34495e;
+}
+
+.about-container h3 {
+    font-size: 2rem;
+    margin-top: 40px;
+    color: #2c3e50;
+    font-weight: 600;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+.about-container ul {
+    list-style-type: none;
+    padding-left: 0;
+    font-size: 1.1rem;
+    color: #555;
+    margin-left: 25px;
+}
+
+.about-container ul li {
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.about-container ul li:before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.5rem;
+    color: #3498db;
+}
+
+.about-container a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.about-container a:hover {
+    text-decoration: underline;
+    color: #2980b9;
+}
+
+/* Add a subtle background image for the about page */
+.about-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://images.unsplash.com/photo-1515378791036-0648a3ef77b2') no-repeat center center/cover;
+    opacity: 0.1;
+    border-radius: 15px;
+    z-index: -1;
+}
+
+.about-container .highlight {
+    background-color: #f7f7f7;
+    padding: 10px;
+    border-left: 4px solid #3498db;
+    margin-top: 30px;
+    font-size: 1.15rem;
+    color: #34495e;
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        padding: 20px;
+        margin: 20px;
+    }
+
+    .about-container h2 {
+        font-size: 2.2rem;
+    }
+
+    .about-container h3 {
+        font-size: 1.6rem;
+    }
+
+    .about-container p,
+    .about-container ul {
+        font-size: 1rem;
+    }
+}
+
+  
+  /* ==============================
+   Explore Styling
+   ============================== */
+
+  .explore-container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .destinations-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .destination-card {
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    background-color: white;
+  }
+  
+  .destination-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .destination-card h3 {
+    font-size: 1.2rem;
+    margin: 10px;
+  }
+  
+  .destination-card p {
+    padding: 0 15px;
+    font-size: 0.95rem;
+    color: #555;
+  }
+  
+  .tags {
+    display: flex;
+    gap: 10px;
+    padding: 10px 15px;
+  }
+  
+  .tag {
+    background-color: #f1f1f1;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #333;
+  }
+  
