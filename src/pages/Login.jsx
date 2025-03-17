@@ -1,42 +1,27 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useAuth } from "../context/AuthContext";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; 
 
 const Login = () => {
-  const [credentials, setCredentials] = useState({
-    email: "",
-    password: ""
-  });
-
+  const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const [showPassword, setShowPassword] = useState(false);
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setCredentials({ ...credentials, [name]: value });
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    const result = await login(credentials.email, credentials.password);
 
-    try {
-      // Fetch user data from the backend
-      const response = await axios.get("https://route-crafters-server.onrender.com/users");
-      const users = response.data;
-
-      // Check if user exists
-      const user = users.find((u) => u.email === credentials.email && u.password === credentials.password);
-
-      if (user) {
-        localStorage.setItem("isAuthenticated", "true"); // Store authentication state
-        localStorage.setItem("user", JSON.stringify(user)); // Store user data
-        alert("Login successful!");
-        navigate("/dashboard"); // ✅ Redirect to Dashboard page
-      } else {
-        alert("Invalid email or password.");
-      }
-    } catch (error) {
-      console.error("Login error:", error);
-      alert("Failed to login. Please try again.");
+    if (result.success) {
+      alert("Login successful!");
+      navigate("/dashboard");
+    } else {
+      alert(result.message);
     }
   };
 
@@ -46,14 +31,36 @@ const Login = () => {
         <h1>Login</h1>
         <form onSubmit={handleLogin}>
           <label>Email</label>
-          <input type="email" name="email" placeholder="Enter your email" value={credentials.email} onChange={handleChange} required />
-          
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            value={credentials.email}
+            onChange={handleChange}
+            required
+          />
+
           <label>Password</label>
-          <input type="password" name="password" placeholder="Enter your password" value={credentials.password} onChange={handleChange} required />
-          
+          <div className="password-container">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="Enter your password"
+              value={credentials.password}
+              onChange={handleChange}
+              required
+            />
+            <span
+              className="toggle-password"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
+          </div>
+
           <button type="submit">Login</button>
         </form>
-        
+
         <p>
           Do not have an account? <Link to="/signup">Sign up here</Link>
         </p>

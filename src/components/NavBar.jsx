@@ -1,65 +1,69 @@
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [showProfile, setShowProfile] = useState(false);
-  const [user, setUser] = useState(null);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const authStatus = localStorage.getItem("isAuthenticated");
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-
-    if (authStatus && storedUser) {
-      setIsAuthenticated(true);
-      setUser(storedUser);
-    }
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem("isAuthenticated");
-    localStorage.removeItem("user");
-    setIsAuthenticated(false);
-    setShowProfile(false);
-    setUser(null);
-    navigate("/login"); // ✅ Redirect to login after logout
-    window.location.reload(); // ✅ Refresh UI to hide Profile button
-  };
+  const { user, isAuthenticated, logout } = useAuth();
 
   return (
-    <nav className="navbar">
-      <div className="logo">Hobby Travel Matchmaker</div>
-      <div className="menu">
-        <Link to="/">Home</Link>
-        <Link to="/explore">Explore</Link>
-        <Link to="/about">About</Link>
-        <Link to="/login">Login</Link>
-        <Link to="/signup">
-          <button className="signup-btn">Sign Up</button>
-        </Link>
+    <nav style={{ 
+      display: "flex", 
+      justifyContent: "space-between", 
+      alignItems: "center", 
+      padding: "10px 20px", 
+      background: "black", 
+      color: "white" 
+    }}>
+      <h1 style={{ margin: 0, fontSize: "24px" }}>Hobby Travel Matchmaker</h1>
 
-        {isAuthenticated && (
-          <div className="profile-container">
-            <button className="profile-btn" onClick={() => setShowProfile(!showProfile)}>
-              Profile
-            </button>
+      <ul style={{ 
+        listStyle: "none", 
+        display: "flex", 
+        gap: "20px", 
+        margin: 0, 
+        padding: 0 
+      }}>
+        <li><Link to="/" style={{ color: "white", textDecoration: "none" }}>Home</Link></li>
+        <li><Link to="/explore" style={{ color: "white", textDecoration: "none" }}>Explore</Link></li>
+        <li><Link to="/about" style={{ color: "white", textDecoration: "none" }}>About</Link></li>
 
-            {showProfile && user && (
-              <div className="profile-box">
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-                  alt="Profile"
-                  className="profile-pic"
-                />
-                <p><strong>Email:</strong> {user.email}</p>
-                <p><strong>Hobby:</strong> {user.hobby}</p>
-                <button onClick={handleLogout}>Logout</button>
-              </div>
-            )}
-          </div>
+        {isAuthenticated ? (
+          <>
+            <li><Link to="/profile" style={{ color: "white", textDecoration: "none" }}>Profile</Link></li>
+            {user?.name && <li style={{ color: "white" }}>Welcome, {user.name}!</li>}
+
+            <li>
+              <button 
+                onClick={logout} 
+                style={{ 
+                  background: "red", 
+                  color: "white", 
+                  border: "none", 
+                  padding: "5px 10px", 
+                  cursor: "pointer", 
+                  borderRadius: "5px" 
+                }}>
+                Logout
+              </button>
+            </li>
+          </>
+        ) : (
+          <>
+            <li><Link to="/login" style={{ color: "white", textDecoration: "none" }}>Login</Link></li>
+            <li>
+              <Link to="/signup" 
+                style={{ 
+                  background: "orange", 
+                  color: "white", 
+                  padding: "8px 12px", 
+                  borderRadius: "5px", 
+                  textDecoration: "none" 
+                }}>
+                Sign Up
+              </Link>
+            </li>
+          </>
         )}
-      </div>
+      </ul>
     </nav>
   );
 };
