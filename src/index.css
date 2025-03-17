@@ -397,10 +397,8 @@
 }
 
 /* ==============================
-   SignUp Styles
+   SignUp Styles (Modified)
    ============================== */
-
-
    .signup-container {
     display: flex;
     justify-content: center;
@@ -417,7 +415,7 @@
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
-    max-width: 400px;
+    max-width: 500px;
     width: 100%;
 }
 
@@ -446,14 +444,13 @@
     border-radius: 5px;
     font-size: 16px;
     appearance: none;
-
 }
 
 .signup-box button {
     background: #4CAF50;
     color: white;
     border: none;
-    padding: 10px;
+    padding: 12px;
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
@@ -464,24 +461,157 @@
     background: #45a049;
 }
 
-.signup-box p {
-    margin-top: 1rem;
+/*Gender styling*/
+
+/* Ensure radio buttons are circular */
+.gender-options input[type="radio"] {
+    appearance: none;
+    width: 16px;  /* Adjust size if needed */
+    height: 16px;
+    border: 2px solid #333; /* Border color */
+    border-radius: 50%; /* Makes it circular */
+    outline: none;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  /* Add a filled effect when selected */
+  .gender-options input[type="radio"]:checked {
+    background-color: #333; /* Adjust color if needed */
+  }
+  
+  /* Proper spacing between label and radio button */
+  .gender-options label {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between button and text */
+    cursor: pointer;
+  }
+  
+/* MultiStepForm Navigation Buttons */
+.step-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
-.signup-box a {
-    color: #ff7a00;
-    text-decoration: none;
-    font-weight: bold;
+.step-buttons button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
-.signup-box a:hover {
-    text-decoration: underline;
+.step-buttons .prev {
+    background: #ccc;
+    color: black;
 }
 
+.step-buttons .next {
+    background: #ff7a00;
+    color: white;
+}
+
+.step-buttons .next:hover {
+    background: #e77a00;
+}
+
+/* Address Details */
+.address-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.address-container textarea {
+    width: 100%;
+    height: 80px;
+    resize: none;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.toggle-address {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+/* Language and Hobby Section */
+.language-container, .hobby-container {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f9f9f9;
+  }
+  
+  .language-item, .hobby-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .language-input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .checkbox-group {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  input[type="checkbox"] {
+    appearance: auto !important;
+    -webkit-appearance: checkbox !important;
+    -moz-appearance: checkbox !important;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+  
+  /* Button Styling */
+  .add-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .add-btn:hover {
+    background: #0056b3;
+  }
+  
+
+/* Credentials Section */
+.credentials-container {
+    display: flex;
+    flex-direction: column;
+}
 
 /* Success Message */
 .success-message {
     text-align: center;
+    padding: 20px;
 }
 
 .success-message h2 {

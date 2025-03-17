@@ -1,122 +1,69 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
-const cityStateNationality = {
-  "New York": { state: "New York", nationality: "USA" },
-  "Los Angeles": { state: "California", nationality: "USA" },
-  "Toronto": { state: "Ontario", nationality: "Canada" },
-  "Vancouver": { state: "British Columbia", nationality: "Canada" }
-};
+import PersonalDetails from "../components/SignUpComponents/PersonalDetails";
+import AddressDetails from "../components/SignUpComponents/AddressDetails";
+import Languages from "../components/SignUpComponents/Languages";
+import Credentials from "../components/SignUpComponents/Credentials";
+import Hobbies from "../components/SignUpComponents/Hobbies";
 
 const SignUp = () => {
+  const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    phoneNumber: "",
-    password: "",
-    confirmPassword: "",
-    city: "",
-    state: "",
-    nationality: ""
+    personal: { name: "", email: "", phone: "", dob: "", gender: "" },
+    address: { permanent: "", current: "", sameAsPermanent: false },
+    languages: [{ name: "", read: false, write: false, speak: false }],
+    hobbies: [] ,//create a object in languages array{name: ....}
+    credentials: { username: "", email: "", password: "", confirmPassword: "" }
   });
 
-  const [isSuccess, setIsSuccess] = useState(false);
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    let updatedData = { ...formData, [name]: value };
-    
-    if (name === "city" && cityStateNationality[value]) {
-      updatedData.state = cityStateNationality[value].state;
-      updatedData.nationality = cityStateNationality[value].nationality;
-    }
+  const nextStep = () => setStep(step + 1);
+  const prevStep = () => setStep(step - 1);
 
-    setFormData(updatedData);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (formData.password !== formData.confirmPassword) {
+  const handleSubmit = async () => {
+    console.log(formData)
+    if (formData.credentials.password !== formData.credentials.confirmPassword) {
       alert("Passwords do not match!");
       return;
     }
 
-    // Store user data in localStorage
-    // localStorage.setItem("user", JSON.stringify({ 
-    //   email: formData.email, 
-    //   password: formData.password 
-    // }));
+    // Ensure email from personal details is stored in credentials
+    const updatedFormData = {
+      ...formData,
+      credentials: {
+        ...formData.credentials,
+        email: formData.personal.email // Copy email from personal details
+      }
+    };
 
+<<<<<<< HEAD
     await axios.post("https://route-crafters-server.onrender.com/users", formData)
     
 
     setIsSuccess(true);
     setTimeout(() => navigate("/login"), 3000);
+=======
+    try {
+      await axios.post("https://route-crafters-server.onrender.com/users", updatedFormData);
+      alert("Registration successful!");
+      navigate("/login");
+    } catch (error) {
+      console.error("Error during signup:", error);
+      alert("Signup failed. Please try again.");
+    }
+>>>>>>> f4fd03743e29b8acb1e950da7aa052f6bc4edb88
   };
 
   return (
     <div className="signup-container">
       <div className="signup-box">
-        {isSuccess ? (
-          <div className="success-message">
-            <h2>Signup Successful!</h2>
-            <p>Redirecting to login...</p>
-          </div>
-        ) : (
-          <>
-            <h1>Create Account</h1>
-            <form onSubmit={handleSubmit}>
-              <label>Full Name</label>
-              <input type="text" name="fullName" placeholder="Enter your full name" value={formData.fullName} onChange={handleChange} required />
-              
-              <label>Email</label>
-              <input type="email" name="email" placeholder="Enter your email" value={formData.email} onChange={handleChange} required />
-              
-              <label>Phone Number</label>
-              <input type="text" name="phoneNumber" placeholder="Enter your phone number" value={formData.phoneNumber} onChange={handleChange} required />
-              
-              <label>Password</label>
-              <input type="password" name="password" placeholder="Enter your password" value={formData.password} onChange={handleChange} required />
-              
-              <label>Confirm Password</label>
-              <input type="password" name="confirmPassword" placeholder="Confirm your password" value={formData.confirmPassword} onChange={handleChange} required />
-              
-              <label>City</label>
-              <select name="city" value={formData.city} onChange={handleChange} required className="custom-select">
-                <option value="">Select a city</option>
-                {Object.keys(cityStateNationality).map((city) => (
-                  <option key={city} value={city}>{city}</option>
-                ))}
-              </select>
-              
-              <label>State</label>
-              <select name="state" value={formData.state} onChange={handleChange} required className="custom-select">
-                <option value="">Select a state</option>
-                {[...new Set(Object.values(cityStateNationality).map(item => item.state))].map(state => (
-                  <option key={state} value={state}>{state}</option>
-                ))}
-              </select>
-              
-              <label>Nationality</label>
-              <select name="nationality" value={formData.nationality} onChange={handleChange} required className="custom-select">
-                <option value="">Select a nationality</option>
-                {[...new Set(Object.values(cityStateNationality).map(item => item.nationality))].map(nationality => (
-                  <option key={nationality} value={nationality}>{nationality}</option>
-                ))}
-              </select>
-
-              <button type="submit">Sign Up</button>
-            </form>
-            
-            <p>
-              Already have an account? <Link to="/login">Login here</Link>
-            </p>
-          </>
-        )}
+        {step === 1 && <PersonalDetails formData={formData} setFormData={setFormData} nextStep={nextStep} />}
+        {step === 2 && <AddressDetails formData={formData} setFormData={setFormData} nextStep={nextStep} prevStep={prevStep} />}
+        {step === 3 && <Languages formData={formData} setFormData={setFormData} nextStep={nextStep} prevStep={prevStep} />}
+        {step === 4 && <Hobbies formData={formData} setFormData={setFormData} nextStep={nextStep} prevStep={prevStep} />}
+        {step === 5 && <Credentials formData={formData} setFormData={setFormData} handleSubmit={handleSubmit} prevStep={prevStep} />}
       </div>
     </div>
   );
