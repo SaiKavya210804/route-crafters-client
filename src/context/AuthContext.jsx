@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
 
   // Check authentication status on page load
   useEffect(() => {
+    // Fetch user data to check if the user is already authenticated
     axios
       .get("https://route-crafters-server.onrender.com/auth/user", { withCredentials: true })
       .then((response) => {
@@ -32,10 +33,11 @@ export const AuthProvider = ({ children }) => {
   // Login Function
   const login = async (email, password) => {
     try {
+      // Fetch users from the server
       const response = await axios.get("https://route-crafters-server.onrender.com/users");
       const users = response.data;
 
-      // Check if user exists
+      // Check if user exists with matching credentials
       const user = users.find((u) => u.email === email && u.password === password);
       if (user) {
         setUser(user);
@@ -65,7 +67,7 @@ export const AuthProvider = ({ children }) => {
 
 // Define PropTypes for children
 AuthProvider.propTypes = {
-  children: PropTypes.element.isRequired, // ✅ Corrected PropTypes
+  children: PropTypes.node.isRequired, // ✅ Corrected PropTypes
 };
 
 export default AuthProvider;

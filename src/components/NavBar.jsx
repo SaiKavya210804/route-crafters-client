@@ -1,8 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";  // Import useNavigate
 import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
   const { user, isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();  // Initialize the navigate function
+
+  // Function to handle logout and redirect to login page
+  const handleLogout = () => {
+    logout();  // Call your logout function
+    navigate("/login");  // Redirect to login page
+  };
 
   return (
     <nav style={{ 
@@ -33,7 +40,7 @@ const Navbar = () => {
 
             <li>
               <button 
-                onClick={logout} 
+                onClick={handleLogout}  // Use the handleLogout function
                 style={{ 
                   background: "red", 
                   color: "white", 

@@ -6,8 +6,9 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
-import About from "./pages/About";  // Import About Page
+import About from "./pages/About";
 import Explore from "./pages/Explore";
+import ProtectedRoute from "./components/ProtectedRoute"; // Import the ProtectedRoute component
 
 function App() {
   return (
@@ -19,8 +20,14 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/about" element={<About />} />  {/* About page route */}
+
+          {/* Use ProtectedRoute to protect the dashboard */}
+          <Route
+            path="/dashboard"
+            element={<ProtectedRoute element={<Dashboard />} />}
+          />
+
+          <Route path="/about" element={<About />} />
           <Route path="/explore" element={<Explore />} />
         </Routes>
       </Router>
