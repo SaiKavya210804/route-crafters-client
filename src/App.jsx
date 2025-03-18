@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "../src/context/AuthContext";
-import Navbar from "./components/Navbar";
+
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -10,11 +10,13 @@ import About from "./pages/About";
 import Explore from "./pages/Explore";
 import ProtectedRoute from "./components/ProtectedRoute"; // Import the ProtectedRoute component
 
+import NavBar from "./components/NavBar";
+
 function App() {
   return (
     <AuthProvider>
       <Router>
-        <Navbar />
+        <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";  // Import useNavigate
 import { useAuth } from "../context/AuthContext";
 
-const Navbar = () => {
+const NavBar = () => {
   const { user, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();  // Initialize the navigate function
 
@@ -75,4 +75,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavBar;
