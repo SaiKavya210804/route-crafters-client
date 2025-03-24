@@ -10,13 +10,13 @@
 /* ==============================
    Navbar Styles
    ============================== */
-.navbar {
+   .navbar {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 15px 50px;
-    background: rgba(0, 0, 0, 0.6);
+    padding: 20px 50px;  /* Increased padding for a thicker navbar */
+    background: rgba(0, 0, 0, 0.8); /* Slightly darker background */
     color: white;
     font-family: 'Helvetica', sans-serif;
     display: flex;
@@ -24,17 +24,18 @@
     align-items: center;
     z-index: 10;
     box-sizing: border-box;
+    height: 80px;  /* Define a consistent height */
 }
 
 .navbar .logo {
-    font-size: 24px;
+    font-size: 26px;  /* Slightly larger font size for emphasis */
     font-weight: bold;
     color: white;
 }
 
 .navbar .menu {
     display: flex;
-    gap: 20px;
+    gap: 25px;  /* Slightly increased gap between menu items */
     align-items: center;
 }
 
@@ -53,7 +54,7 @@
 
 .navbar .signup-btn {
     background: #f8a500;
-    padding: 8px 15px;
+    padding: 10px 20px;  /* Increased padding for the button */
     border: none;
     color: white;
     cursor: pointer;
@@ -64,6 +65,21 @@
 
 .navbar .signup-btn:hover {
     background: #e77a00;
+}
+
+.navbar .logout-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar .logout-btn:hover {
+    background-color: #cc0000;
 }
 
 /* ==============================
@@ -368,7 +384,7 @@
 .toggle-password {
     position: absolute;
     right: 10px;
-    top: 35%;  /* Moved slightly higher */
+    top: 40%;  /* Moved slightly higher */
     transform: translateY(-50%);
     cursor: pointer;
     font-size: 18px;
@@ -625,116 +641,383 @@
 }
 
 /* ==============================
-   Dashboard Styles
+   Dashboard Styles (Orange-Red Color Theme)
    ============================== */
-.dashboard-container {
+   .dashboard-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     height: 100vh;
-    text-align: center;
-    background: #f4f4f4;
-    color: #333;
+    padding: 40px 0;
+    background: #fff8f0; /* Light Creamy Orange Background */
+    color: #3d3d3d;
+    font-family: 'Arial', sans-serif;
 }
 
 .dashboard-header {
-    font-size: 32px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: #ff7a00;
+    font-size: 36px;
+    font-weight: 600;
+    color: #ff7043; /* Soft Orange */
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .dashboard-subtext {
-    font-size: 18px;
-    margin-bottom: 20px;
-    color: #555;
+    font-size: 20px;
+    font-weight: 400;
+    color: #777;
+    margin-bottom: 30px;
+    text-align: center;
 }
 
 .dashboard-content {
     display: flex;
     flex-direction: column;
+    gap: 20px; /* Space between cards */
     align-items: center;
-    gap: 15px;
+    margin-top: 20px;
 }
 
 .dashboard-card {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    text-align: center;
+    background: #ffffff; /* White background for cards */
+    padding: 25px;
+    width: 350px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease-in-out;
+    text-align: center;
 }
 
 .dashboard-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+}
+
+.dashboard-card h2 {
+    font-size: 24px;
+    color: #ff7043; /* Soft Orange for heading */
+    margin-bottom: 15px;
+}
+
+.dashboard-card p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 25px;
 }
 
 .logout-btn {
-    background-color: #ff4d4d;
+    background-color: #ff7043; /* Soft Orange */
     color: white;
     border: none;
-    padding: 12px 25px;
+    padding: 14px 28px;
     font-size: 18px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 6px;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
 }
 
 .logout-btn:hover {
-    background-color: #cc0000;
+    background-color: #e64a19; /* Darker Orange for hover */
+}
+
+.dashboard-footer {
+    margin-top: 50px;
+    color: #999;
+    font-size: 14px;
+    text-align: center;
 }
 
 /* ==============================
-   Profile Styles
+   Profiles Grid & Card Styles
    ============================== */
 
-   .profile-container {
-    position: relative;
-    display: inline-block;
-    margin-left: 10px;
-  }
-  
-  .profile-btn {
-    background-color: transparent;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .profile-box {
-    position: absolute;
-    top: 40px;
-    right: 0;
-    width: 200px;
-    background: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    padding: 10px;
+/* Profile Container */
+.profile-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
     text-align: center;
   }
   
-  .profile-pic {
-    width: 50px;
-    height: 50px;
+  /* Profile Heading */
+  .profile-container h2 {
+    font-size: 24px;
+    color: #166534;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Profile Image */
+  .profile-image {
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
+    border: 4px solid #d1d5db;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
     margin-bottom: 10px;
   }
   
-  .profile-box p {
-    margin: 5px 0;
-    font-size: 14px;
+  /* Image URL Input */
+  .profile-image-input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    text-align: center;
   }
   
-  .profile-box button {
-    background-color: red;
-    color: white;
-    border: none;
+  /* Profile Fields Container */
+  .profile-fields {
+    background: #f3f4f6;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Profile Field Row */
+  .profile-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #d1d5db;
+  }
+  
+  .profile-field:last-child {
+    border-bottom: none;
+  }
+  
+  /* Field Labels */
+  .profile-field span {
+    font-weight: 600;
+    color: #374151;
+  }
+  
+  /* Input Field */
+  .profile-input {
+    flex-grow: 1;
+    margin-left: 10px;
     padding: 5px;
-    border-radius: 3px;
-    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
   }
   
+  /* Buttons */
+  .profile-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .edit-btn {
+    background-color: #10b981;
+  }
+  
+  .edit-btn:hover {
+    background-color: #059669;
+  }
+  
+  .save-btn {
+    background-color: #2563eb;
+  }
+  
+  .save-btn:hover {
+    background-color: #1e40af;
+  }
+  
+/* About Page Styles */
+.about-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    transition: transform 0.3s ease-in-out;
+}
+
+.about-container:hover {
+    transform: scale(1.02);
+}
+
+.about-container h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.about-container p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.about-container strong {
+    font-weight: 600;
+    color: #34495e;
+}
+
+.about-container h3 {
+    font-size: 2rem;
+    margin-top: 40px;
+    color: #2c3e50;
+    font-weight: 600;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+.about-container ul {
+    list-style-type: none;
+    padding-left: 0;
+    font-size: 1.1rem;
+    color: #555;
+    margin-left: 25px;
+}
+
+.about-container ul li {
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.about-container ul li:before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.5rem;
+    color: #3498db;
+}
+
+.about-container a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.about-container a:hover {
+    text-decoration: underline;
+    color: #2980b9;
+}
+
+/* Add a subtle background image for the about page */
+.about-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://images.unsplash.com/photo-1515378791036-0648a3ef77b2') no-repeat center center/cover;
+    opacity: 0.1;
+    border-radius: 15px;
+    z-index: -1;
+}
+
+.about-container .highlight {
+    background-color: #f7f7f7;
+    padding: 10px;
+    border-left: 4px solid #3498db;
+    margin-top: 30px;
+    font-size: 1.15rem;
+    color: #34495e;
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        padding: 20px;
+        margin: 20px;
+    }
+
+    .about-container h2 {
+        font-size: 2.2rem;
+    }
+
+    .about-container h3 {
+        font-size: 1.6rem;
+    }
+
+    .about-container p,
+    .about-container ul {
+        font-size: 1rem;
+    }
+}
+
+  
+  /* ==============================
+   Explore Styling
+   ============================== */
+
+  .explore-container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .destinations-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .destination-card {
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    background-color: white;
+  }
+  
+  .destination-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .destination-card h3 {
+    font-size: 1.2rem;
+    margin: 10px;
+  }
+  
+  .destination-card p {
+    padding: 0 15px;
+    font-size: 0.95rem;
+    color: #555;
+  }
+  
+  .tags {
+    display: flex;
+    gap: 10px;
+    padding: 10px 15px;
+  }
+  
+  .tag {
+    background-color: #f1f1f1;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #333;
+  }
   

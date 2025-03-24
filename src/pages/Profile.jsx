@@ -1,43 +1,106 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 
 const Profile = () => {
-  const [profile, setProfile] = useState(null);
-  const navigate = useNavigate();
+  const { user, setUser } = useAuth();
+  const [userData, setUserData] = useState(null);
+  const [editingField, setEditingField] = useState(null);
+  const [tempValue, setTempValue] = useState("");
+  const [profilePic, setProfilePic] = useState("");
 
   useEffect(() => {
-    // Fetch all profiles from db.json
-    axios.get("https://route-crafters-server.onrender.com/users")
-      .then((response) => setProfiles(response.data))
-      .catch((error) => console.error("Error fetching profiles:", error));
-  }, []);
+    if (!user || !user.id) return;
+
+    axios
+      .get(`https://route-crafters-server.onrender.com/users/${user.id}`)
+      .then((response) => {
+        setUserData(response.data);
+        setProfilePic(response.data.profilePic || "https://www.w3schools.com/howto/img_avatar.png");
+      })
+      .catch((error) => console.error("Error fetching user data:", error));
+  }, [user]);
+
+  const handleEdit = (field, value) => {
+    setEditingField(field);
+    setTempValue(value);
+  };
+
+  const handleSave = async () => {
+    if (!userData || !userData.id) return;
+
+    const updatedUser = { ...userData, [editingField]: tempValue };
+
+    try {
+      const response = await axios.put(
+        `https://route-crafters-server.onrender.com/users/${userData.id}`,
+        updatedUser
+      );
+      setUserData(response.data);
+      if (setUser) setUser(response.data);
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
+
+    setEditingField(null);
+  };
 
   const handleEditProfile = () => {
     navigate("/EditProfile");
   };
 
   return (
-    <div className="profile-container flex items-center justify-center h-screen">
-      {profile ? (
-        <div className="profile-box bg-white p-6 rounded-lg shadow-md text-center">
-          <img 
-            src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" 
-            alt="Profile" 
-            className="profile-image w-24 h-24 rounded-full mx-auto mb-4"
-          />
-          <p className="text-lg font-semibold">{profile.name}</p>
-          <p className="text-gray-600"><strong>Email:</strong> {profile.email}</p>
-          <p className="text-gray-600"><strong>Hobby:</strong> {profile.hobby || "Not specified"}</p>
-          <button 
-            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-            onClick={handleEditProfile}
-          >
-            Edit Profile
-          </button>
+    <div className="profile-container">
+      <h2>Profile</h2>
+
+      {userData ? (
+        <div>
+          {/* Profile Picture Section */}
+          <div>
+            <img src={profilePic} alt="Profile" className="profile-image" />
+            <input
+              type="text"
+              placeholder="Enter image URL"
+              value={profilePic}
+              onChange={(e) => setProfilePic(e.target.value)}
+              className="profile-image-input"
+            />
+          </div>
+
+          {/* Editable Fields */}
+          <div className="profile-fields">
+            {Object.keys(userData).map(
+              (key) =>
+                key !== "id" &&
+                key !== "profilePic" && (
+                  <div key={key} className="profile-field">
+                    <span>{key}:</span>
+                    {editingField === key ? (
+                      <input
+                        type="text"
+                        value={tempValue}
+                        onChange={(e) => setTempValue(e.target.value)}
+                        className="profile-input"
+                      />
+                    ) : (
+                      <span>{userData[key]}</span>
+                    )}
+                    {editingField === key ? (
+                      <button onClick={handleSave} className="profile-btn save-btn">
+                        Save
+                      </button>
+                    ) : (
+                      <button onClick={() => handleEdit(key, userData[key])} className="profile-btn edit-btn">
+                        Edit
+                      </button>
+                    )}
+                  </div>
+                )
+            )}
+          </div>
         </div>
       ) : (
-        <p>Loading profile...</p>
+        <p>No user data found.</p>
       )}
     </div>
   );

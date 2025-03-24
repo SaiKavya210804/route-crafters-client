@@ -1,19 +1,30 @@
-// import React from "react";
-
 const About = () => {
-    return (
-      <section style={{ padding: "2rem", textAlign: "center" }}>
-        <h1>About Hobby Travel Matchmaker</h1>
-        <p>
-          Hobby Travel Matchmaker is a platform designed to connect travelers with destinations that match their passions. 
-          Whether you are into photography, hiking, or exploring food, we help you find the perfect getaway!
-        </p>
-        <p>
-          Join our community to connect with like-minded travelers and plan trips tailored to your interests.
-        </p>
-        <p>Start your journey with us today!</p>
-      </section>
-    );
-  };
-  
-  export default About;
+  return (
+    <div className="about-container">
+      <h2>About the Hobby Travel Matchmaker</h2>
+      <p>
+        Welcome to the Hobby Travel Matchmaker! We are a platform designed to
+        connect hobby enthusiasts with like-minded travelers. Whether you are
+        into hiking, photography, or even knitting, our goal is to help you
+        find fellow travelers who share your passions and interests.
+      </p>
+      <p>
+        <strong>Our Mission:</strong> To bring together people who share a love
+        for travel and hobbies, helping them find the perfect travel buddies to
+        make their trips even more memorable.
+      </p>
+      <h3>How it Works:</h3>
+      <ul>
+        <li>Sign up to create a profile with your interests and travel preferences.</li>
+        <li>Browse through other users profiles and connect with potential travel partners.</li>
+        <li>Plan your trips together and enjoy your shared hobbies while traveling!</li>
+      </ul>
+      <p>
+        Join us today and start connecting with others who share your travel and
+        hobby interests!
+      </p>
+    </div>
+  );
+};
+
+export default About;

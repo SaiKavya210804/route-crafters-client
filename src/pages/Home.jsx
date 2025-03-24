@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import HeroSection from "../components/HeroSection";
-import HobbiesSection from "../components/HobbiesSection";  // ✅ Import HobbiesSection
+import HobbiesSection from "../components/HobbiesSection";
 import Features from "../components/Features";
 import Footer from "../components/Footer";
-import Navbar from "../components/NavBar";
 
 const Home = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -19,9 +18,9 @@ const Home = () => {
 
   return (
     <>
-      <Navbar />
+      {/* ❌ REMOVED <Navbar /> */}
       <HeroSection />
-      <HobbiesSection />  {/* ✅ Add HobbiesSection here */}
+      <HobbiesSection />
       <Features />
       <Footer />
 
