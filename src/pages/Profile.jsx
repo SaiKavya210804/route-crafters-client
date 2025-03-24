@@ -7,16 +7,10 @@ const Profile = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-<<<<<<< HEAD
-    axios.get("http://localhost:3000/users/1") // Assuming single user profile for now
-      .then((response) => setProfile(response.data))
-      .catch((error) => console.error("Error fetching profile:", error));
-=======
     // Fetch all profiles from db.json
     axios.get("https://route-crafters-server.onrender.com/users")
       .then((response) => setProfiles(response.data))
       .catch((error) => console.error("Error fetching profiles:", error));
->>>>>>> f4fd03743e29b8acb1e950da7aa052f6bc4edb88
   }, []);
 
   const handleEditProfile = () => {

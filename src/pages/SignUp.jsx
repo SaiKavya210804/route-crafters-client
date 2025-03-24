@@ -38,14 +38,7 @@ const SignUp = () => {
       }
     };
 
-<<<<<<< HEAD
-    await axios.post("https://route-crafters-server.onrender.com/users", formData)
-    
-
-    setIsSuccess(true);
-    setTimeout(() => navigate("/login"), 3000);
-=======
-    try {
+    try { 
       await axios.post("https://route-crafters-server.onrender.com/users", updatedFormData);
       alert("Registration successful!");
       navigate("/login");
@@ -53,7 +46,6 @@ const SignUp = () => {
       console.error("Error during signup:", error);
       alert("Signup failed. Please try again.");
     }
->>>>>>> f4fd03743e29b8acb1e950da7aa052f6bc4edb88
   };
 
   return (
