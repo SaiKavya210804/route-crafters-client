@@ -28,18 +28,10 @@ const SignUp = () => {
       alert("Passwords do not match!");
       return;
     }
-
-    // Ensure email from personal details is stored in credentials
-    const updatedFormData = {
-      ...formData,
-      credentials: {
-        ...formData.credentials,
-        email: formData.personal.email // Copy email from personal details
-      }
-    };
+    
 
     try {
-      await axios.post("https://route-crafters-server.onrender.com/users", updatedFormData);
+      await axios.post("http://localhost:8080/api/users/register", formData);
       alert("Registration successful!");
       navigate("/login");
     } catch (error) {

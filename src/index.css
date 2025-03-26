@@ -729,112 +729,227 @@
     text-align: center;
 }
 
-/* ==============================
-   Profiles Grid & Card Styles
+/* ============================== 
+   Profile Page Styling
    ============================== */
 
 /* Profile Container */
 .profile-container {
-    max-width: 500px;
+    max-width: 600px;
     margin: 50px auto;
     padding: 20px;
     background-color: #ffffff;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
     text-align: center;
-  }
-  
-  /* Profile Heading */
-  .profile-container h2 {
-    font-size: 24px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Profile Heading */
+.profile-container h2 {
+    font-size: 28px;
     color: #166534;
     font-weight: bold;
     margin-bottom: 20px;
-  }
-  
-  /* Profile Image */
-  .profile-image {
-    width: 120px;
-    height: 120px;
+}
+
+/* Profile Image */
+.profile-image {
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     border: 4px solid #d1d5db;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
     margin-bottom: 10px;
-  }
-  
-  /* Image URL Input */
-  .profile-image-input {
+    object-fit: cover;
+}
+
+/* Image URL Input */
+.profile-image-input {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     margin-top: 10px;
     border: 1px solid #ccc;
-    border-radius: 6px;
-    text-align: center;
-  }
-  
-  /* Profile Fields Container */
-  .profile-fields {
-    background: #f3f4f6;
-    padding: 15px;
     border-radius: 8px;
+    text-align: center;
+}
+
+/* Section Styles */
+.profile-section {
+    background: #f3f4f6;
+    padding: 20px;
+    border-radius: 10px;
     margin-top: 20px;
-    box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Profile Field Row */
-  .profile-field {
+    box-shadow: inset 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Headings */
+.profile-section h3 {
+    font-size: 22px;
+    color: #166534;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/* Profile Field Row */
+.profile-field {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
     border-bottom: 1px solid #d1d5db;
-  }
-  
-  .profile-field:last-child {
+}
+
+.profile-field:last-child {
     border-bottom: none;
-  }
-  
-  /* Field Labels */
-  .profile-field span {
+}
+
+/* Field Labels */
+.profile-field strong {
     font-weight: 600;
     color: #374151;
-  }
-  
-  /* Input Field */
-  .profile-input {
+}
+
+/* Input Field */
+.profile-input {
     flex-grow: 1;
     margin-left: 10px;
-    padding: 5px;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  /* Buttons */
-  .profile-btn {
-    padding: 6px 12px;
-    font-size: 14px;
+    border-radius: 8px;
+}
+
+/* Buttons */
+.profile-btn {
+    padding: 10px 18px;
+    font-size: 16px;
     color: white;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     transition: 0.3s;
-  }
-  
-  .edit-btn {
+}
+
+/* Edit Button */
+.edit-btn {
     background-color: #10b981;
-  }
-  
-  .edit-btn:hover {
+}
+
+.edit-btn:hover {
     background-color: #059669;
-  }
-  
-  .save-btn {
+}
+
+/* Save Button */
+.save-btn {
     background-color: #2563eb;
-  }
-  
-  .save-btn:hover {
+}
+
+.save-btn:hover {
     background-color: #1e40af;
-  }
-  
+}
+
+/* Delete Profile Button */
+.delete-profile-btn {
+    margin-top: 20px;
+    background-color: #dc2626;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    border: none;
+}
+
+.delete-profile-btn:hover {
+    background-color: #b91c1c;
+}
+
+/* Address Container */
+.address-container {
+    background: #f9fafb;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: inset 0px 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.address-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+}
+
+.address-edit-btn {
+    padding: 6px 12px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Language & Hobby Container */
+.language-container, .hobby-container {
+    background: #f9fafb;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: inset 0px 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.language-item, .hobby-item {
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+}
+
+.language-checkbox {
+    transform: scale(1.3);
+    cursor: pointer;
+}
+
+.language-label {
+    font-weight: 600;
+    color: #374151;
+}
+
+/* Hobby Buttons */
+.add-hobby-btn, .hobby-remove-btn {
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: white;
+}
+
+.add-hobby-btn {
+    background-color: #10b981;
+}
+
+.add-hobby-btn:hover {
+    background-color: #059669;
+}
+
+.hobby-remove-btn {
+    background-color: #dc2626;
+}
+
+.hobby-remove-btn:hover {
+    background-color: #b91c1c;
+}
+
 /* About Page Styles */
 .about-container {
     max-width: 900px;
