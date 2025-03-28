@@ -37,22 +37,22 @@ const Explore = () => {
         "Hawaii is known for its world-class surfing spots, where you can catch waves, enjoy the tropical beaches, and soak in the beautiful island culture.",
       tags: ["Surfing", "Beach", "Adventure", "Nature"]
     },
-    // {
-    //   id: 5,
-    //   name: "Scuba Diving in the Great Barrier Reef",
-    //   image: "/images/Scubadiving_Explore.jpg", // Local image path for Scuba Diving
-    //   description:
-    //     "Explore the underwater world of the Great Barrier Reef, one of the most famous scuba diving locations in the world, with vibrant coral reefs and exotic marine life.",
-    //   tags: ["Scuba Diving", "Adventure", "Ocean", "Nature"]
-    // },
-    // {
-    //   id: 6,
-    //   name: "Camping in Yellowstone National Park",
-    //   image: "/images/Camping_Explore.jpg", // Local image path for Yellowstone
-    //   description:
-    //     "Yellowstone offers a wide variety of outdoor activities, including camping, hiking, and wildlife watching in one of the most famous national parks in the USA.",
-    //   tags: ["Camping", "Nature", "Adventure", "Wildlife"]
-    // },
+    {
+    id: 5,
+    name: "Scuba Diving in the Great Barrier Reef",
+    image: "/images/Scubadiving_Explore.jpeg", // Local image path for Scuba Diving
+    description:
+    "Explore the underwater world of the Great Barrier Reef, one of the most famous scuba diving locations in the world, with vibrant coral reefs and exotic marine life.",
+    tags: ["Scuba Diving", "Adventure", "Ocean", "Nature"]
+    },
+    {
+      id: 6,
+      name: "Camping in Yellowstone National Park",
+      image: "/images/Camping_Explore.jpeg", // Local image path for Yellowstone
+      description:
+        "Yellowstone offers a wide variety of outdoor activities, including camping, hiking, and wildlife watching in one of the most famous national parks in the USA.",
+      tags: ["Camping", "Nature", "Adventure", "Wildlife"]
+    },
     {
       id: 7,
       name: "Photography in Santorini, Greece",
@@ -62,14 +62,14 @@ const Explore = () => {
       tags: ["Photography", "Culture", "Beach", "History"]
     },
     // Indian Destinations
-    // {
-    //   id: 8,
-    //   name: "Trekking in Himachal Pradesh",
-    //   image: "/images/Trekking_Explore.jpg", // Local image path for Himachal Pradesh trekking
-    //   description:
-    //     "Himachal Pradesh offers stunning trekking trails with beautiful mountain views, dense forests, and scenic valleys. Popular destinations like Manali and Kullu are great for adventure lovers.",
-    //   tags: ["Trekking", "Adventure", "Mountain", "Nature"]
-    // },
+     {
+      id: 8,
+      name: "Trekking in Himachal Pradesh",
+      image: "/images/Trekking_Explore.jpeg", // Local image path for Himachal Pradesh trekking
+      description:
+        "Himachal Pradesh offers stunning trekking trails with beautiful mountain views, dense forests, and scenic valleys. Popular destinations like Manali and Kullu are great for adventure lovers.",
+      tags: ["Trekking", "Adventure", "Mountain", "Nature"]
+    },
     {
       id: 9,
       name: "Backpacking in Rajasthan",

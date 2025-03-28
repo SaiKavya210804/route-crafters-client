@@ -62,7 +62,7 @@ const HeroSection = () => {
         {/* Search Bar */}
         <div className="search-container">
           <Search className="search-icon" />
-          <input type="text" placeholder="Search destinations..." />
+          <input type="text" placeholder="Search Hobbies..." />
           <button className="search-btn">Search</button>
         </div>
       </div>
