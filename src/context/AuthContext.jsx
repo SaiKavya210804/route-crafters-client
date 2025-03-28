@@ -14,15 +14,17 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true)
 
   // Check authentication status on page load
   useEffect(() => {
     // Fetch user data to check if the user is already authenticated
     axios
-      .get("https://route-crafters-server.onrender.com/auth/user", { withCredentials: true })
+      .get("http://localhost:8080/api/users/check-auth", { withCredentials: true })
       .then((response) => {
         setUser(response.data);
         setIsAuthenticated(true);
+        setLoading(false)
       })
       .catch(() => {
         setUser(null);
@@ -31,21 +33,14 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   // Login Function
-  const login = async (email, password) => {
+  const login = async (username, password) => {
     try {
       // Fetch users from the server
-      const response = await axios.get("https://route-crafters-server.onrender.com/users");
-      const users = response.data;
+      const response = await axios.post("http://localhost:8080/api/users/login", {username, password}, {withCredentials: true});
+      setIsAuthenticated(true)
+      return response
 
-      // Check if user exists with matching credentials
-      const user = users.find((u) => u.email === email && u.password === password);
-      if (user) {
-        setUser(user);
-        setIsAuthenticated(true);
-        return { success: true, user };
-      } else {
-        return { success: false, message: "Invalid email or password" };
-      }
+     
     } catch (error) {
       console.error("Login error:", error);
       return { success: false, message: "Failed to login. Please try again." };
@@ -59,7 +54,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ user, isAuthenticated, login, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );

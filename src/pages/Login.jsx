@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; 
 
 const Login = () => {
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const [credentials, setCredentials] = useState({ username: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -15,13 +15,13 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const result = await login(credentials.email, credentials.password);
+    const response = await login(credentials.username, credentials.password);
 
-    if (result.success) {
-      alert("Login successful!");
+    if (response.data) {
+      alert(response.data.message);
       navigate("/dashboard");
     } else {
-      alert(result.message);
+      alert(response.data.message);
     }
   };
 
@@ -30,12 +30,12 @@ const Login = () => {
       <div className="login-box">
         <h1>Login</h1>
         <form onSubmit={handleLogin}>
-          <label>Email</label>
+          <label>Username</label>
           <input
-            type="email"
-            name="email"
-            placeholder="Enter your email"
-            value={credentials.email}
+            type="text"
+            name="username"
+            placeholder="Enter your username"
+            value={credentials.username}
             onChange={handleChange}
             required
           />
