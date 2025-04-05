@@ -8,7 +8,9 @@ import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import About from "./pages/About";
 import Explore from "./pages/Explore";
-import ProtectedRoute from "./components/ProtectedRoute"; // Import the ProtectedRoute component
+import HobbySelection from "./components/HobbySelection"; // Add this
+import SeasonSelection from "./components/SeasonSelection"; // Add this
+import ProtectedRoute from "./components/ProtectedRoute"; 
 
 import NavBar from "./components/NavBar";
 
@@ -31,6 +33,10 @@ function App() {
 
           <Route path="/about" element={<About />} />
           <Route path="/explore" element={<Explore />} />
+
+          {/* ✅ Add routes for HobbySelection & SeasonSelection */}
+          <Route path="/hobby-selection" element={<HobbySelection />} />
+          <Route path="/season-selection" element={<SeasonSelection />} />
         </Routes>
       </Router>
     </AuthProvider>
