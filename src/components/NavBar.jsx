@@ -36,6 +36,8 @@ const NavBar = () => {
         {isAuthenticated ? (
           <>
             <li><Link to="/profile" style={{ color: "white", textDecoration: "none" }}>Profile</Link></li>
+            <li><Link to="/communities" style={{ color: "white", textDecoration: "none" }}>Community</Link></li>
+
             {user?.name && <li style={{ color: "white" }}>Welcome, {user.name}!</li>}
 
             <li>

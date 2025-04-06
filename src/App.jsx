@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
-import { CommunityProvider } from "./context/CommunityContext"; 
+import { CommunityProvider } from "./context/CommunityContext";
 
 // Import Pages
 import Home from "./pages/Home";
@@ -10,23 +10,17 @@ import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import About from "./pages/About";
 import Explore from "./pages/Explore";
-import ProtectedRoute from "./components/ProtectedRoute"; // Import the ProtectedRoute component
+import ProtectedRoute from "./components/ProtectedRoute";
 
 // Import Components
 import NavBar from "./components/NavBar";
-import CreateCommunity from "./components/CreateCommunity";
 import CommunityList from "./components/CommunityList";
 import CommunityPage from "./pages/CommunityPage";
-
-
-// Import Services (To Ensure Services Are Included)
-import { getCommunities, createCommunity } from "./services/CommunityService";
-import { getPosts, createPost } from "./services/PostService";
 
 function App() {
   return (
     <AuthProvider>
-      <CommunityProvider> {/* Ensures Community State is Managed Globally */}
+      <CommunityProvider>
         <Router>
           <NavBar />
           <Routes>
@@ -34,16 +28,13 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/profile" element={<Profile />} />
-
-            {/* Protected Dashboard Route */}
             <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
-
-          <Route path="/about" element={<About />} />
-          <Route path="/explore" element={<Explore />} />
-          <Route path="/communities" element={<CommunityPage />} />
-
-        </Routes>
-      </Router>
+            <Route path="/about" element={<About />} />
+            <Route path="/explore" element={<Explore />} />
+            <Route path="/communities" element={<CommunityList />} />
+            <Route path="/community/:id" element={<CommunityPage />} />
+          </Routes>
+        </Router>
       </CommunityProvider>
     </AuthProvider>
   );

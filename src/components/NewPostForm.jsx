@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import PropTypes from "prop-types"; // 👈 import here
 import axios from "axios";
 import "../styles/Community.css";
 
@@ -28,6 +29,11 @@ const NewPostForm = ({ communityId, onPostCreated }) => {
       <button type="submit">Post</button>
     </form>
   );
+};
+
+NewPostForm.propTypes = {
+  communityId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  onPostCreated: PropTypes.func.isRequired,
 };
 
 export default NewPostForm;

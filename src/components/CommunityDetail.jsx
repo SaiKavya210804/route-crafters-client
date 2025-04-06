@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
 import "../styles/Community.css";
 import PostList from "./PostList";
@@ -6,10 +7,6 @@ import NewPostForm from "./NewPostForm";
 
 const CommunityDetail = ({ community }) => {
   const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    if (community) fetchPosts();
-  }, [community]);
 
   const fetchPosts = async () => {
     try {
@@ -20,13 +17,37 @@ const CommunityDetail = ({ community }) => {
     }
   };
 
+  useEffect(() => {
+    if (community) {
+      fetchPosts();
+    }
+  }, [community]);
+
   return (
     <div className="community-detail">
       <h3>{community.name} - Discussions</h3>
-      <PostList posts={posts} />
-      <NewPostForm communityId={community.id} onPostCreated={fetchPosts} />
+
+      {/* ✅ Make sure these props are passed */}
+      <PostList
+        posts={posts}
+        communityId={community.id}
+        onPostDeleted={fetchPosts}
+      />
+
+      <NewPostForm
+        communityId={community.id}
+        onPostCreated={fetchPosts}
+      />
     </div>
   );
+};
+
+CommunityDetail.propTypes = {
+  community: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string,
+  }),
 };
 
 export default CommunityDetail;

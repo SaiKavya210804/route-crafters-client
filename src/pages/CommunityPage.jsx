@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { getPosts, createPost } from "../services/PostService";
 import { CommunityContext } from "../context/CommunityContext";
@@ -12,7 +12,8 @@ const CommunityPage = () => {
   const [loadingPosts, setLoadingPosts] = useState(true);
   const [submitting, setSubmitting] = useState(false);
 
-  const community = communities.find((c) => c.id === id);
+  const community = communities.find((c) => String(c.id) === id);
+
 
   useEffect(() => {
     if (community) {
@@ -45,7 +46,15 @@ const CommunityPage = () => {
     }
   };
 
-  if (!community) return <h2>Loading community...</h2>;
+  if (!community) {
+    return (
+      <div className="community-page">
+        <h2>Loading community data...</h2>
+        <p>Please wait while we fetch the details.</p>
+      </div>
+    );
+  }
+  
 
   return (
     <div className="community-page">

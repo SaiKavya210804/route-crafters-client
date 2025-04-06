@@ -1,4 +1,5 @@
-import React, { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { getCommunities, createCommunity } from "../services/CommunityService";
 
 export const CommunityContext = createContext();
@@ -6,18 +7,16 @@ export const CommunityContext = createContext();
 export const CommunityProvider = ({ children }) => {
   const [communities, setCommunities] = useState([]);
 
-  // Fetch communities on mount
   useEffect(() => {
     getCommunities()
       .then(setCommunities)
       .catch(console.error);
   }, []);
 
-  // Function to add a new community
   const addCommunity = async (newCommunity) => {
     try {
       const createdCommunity = await createCommunity(newCommunity);
-      setCommunities([...communities, createdCommunity]); // Update state
+      setCommunities([...communities, createdCommunity]);
     } catch (error) {
       console.error("Error creating community:", error);
     }
@@ -28,4 +27,8 @@ export const CommunityProvider = ({ children }) => {
       {children}
     </CommunityContext.Provider>
   );
+};
+
+CommunityProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };

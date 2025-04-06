@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { CommunityContext } from "../context/CommunityContext";
 import "../styles/Community.css";
 
-const CommunityList = ({ onSelect }) => {
+const CommunityList = () => {
   const { communities } = useContext(CommunityContext);
 
   return (
@@ -10,8 +11,10 @@ const CommunityList = ({ onSelect }) => {
       <h2>Hobby Communities</h2>
       <ul>
         {communities.map((community) => (
-          <li key={community.id} onClick={() => onSelect(community)}>
-            {community.name} - {community.description}
+          <li key={community.id}>
+            <Link to={`/community/${community.id}`}>
+              {community.name} - {community.description}
+            </Link>
           </li>
         ))}
       </ul>
