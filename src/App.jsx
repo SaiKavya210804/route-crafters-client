@@ -41,6 +41,7 @@ function App() {
           <Route path="/explore" element={<Explore />} />
         </Routes>
       </Router>
+      </CommunityProvider>
     </AuthProvider>
   );
 }
