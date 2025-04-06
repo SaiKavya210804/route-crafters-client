@@ -1,6 +1,33 @@
 import { useState } from "react";
 import axios from "axios";
 
+// 🖼️ Image mapping
+const destinationImages = {
+  "Swiss Alps": "/images/Switzerland_Explore.jpg",
+  "Kyoto": "/images/Waterfall_Explore.jpg",
+  "Netherlands": "/images/Cycling_Explore.jpg",
+  "Hawaii": "/images/Surfing_Explore.jpg",
+  "Santorini": "/images/Greece_Explore.jpg",
+  "Rajasthan": "/images/BackpackingRajasthan_Explore.jpg",
+  "Goa": "/images/Goa_Explore.jpg",
+  "Kerala": "/images/BackpackingKerala_Explore.jpg",
+  "Nilgiri Mountains": "/images/Nilgiri_Explore.jpg",
+  "Great Barrier Reef": "/images/Scubadiving_Explore.jpeg",
+  "Banff": "/images/Banff_Explore.jpeg",
+  // "Kyoto": "/images/Kyoto.jpg",
+  "Reykjavik": "/images/Reykjavik_Explore.jpg",
+  "Queenstown": "/images/Queenstown_Explore.jpg",
+  "Machu Picchu": "/images/Machu_Picchu_Explore.jpg",
+  "Rome": "/images/Rome_Explore.jpg",
+  "Bali": "/images/Bali_Explore.jpg",
+  "Petra": "/images/Petra_Explore.jpg",
+  "Cusco": "/images/Cusco_Explore.jpg",
+  "Barcelona": "/images/Barcelona_Explore.jpg",
+  "Phuket": "/images/PhuketExplore.jpg",
+  "Marrakech": "/images/Marrakech_Explore.jpg",
+  "Siem Reap": "/images/Siem_Reap_Explore.jpg"
+};
+
 const Explore = () => {
   const [step, setStep] = useState(0); // Step: 0 = start, 1 = select filters, 2 = show recommendations
   const [mode, setMode] = useState(null); // "hobby" or "season"
@@ -9,7 +36,25 @@ const Explore = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [selectedDestination, setSelectedDestination] = useState(null);
 
-  const hobbies = ["Hiking", "Photography", "Cultural Exploration", "Surfing", "Cycling"];
+  const hobbies = [
+    "Photography",
+    "Beaches",
+    "Culture",
+    "Trekking",
+    "Wildlife",
+    "Nature",
+    "History",
+    "Adventure",
+    "Architecture",
+    "Surfing",
+    "Exploration",
+    "Diving",
+    "Nightlife",
+    "Markets",
+    "Skiing",
+    "Mountaineering"
+  ];
+  
   const seasons = ["Spring", "Summer", "Autumn", "Winter"];
   const seasonToMonths = {
     Spring: ["March", "April", "May"],
@@ -131,14 +176,7 @@ const Explore = () => {
                 </li>
               ))}
             </ul>
-          //   <ul>
-          //   {destinations.map((dest) => (
-          //     <li key={dest._id?.$oid || dest.name} onClick={() => handleDestinationClick(dest)}>
-          //       <strong>{dest.name}</strong>
-          //     </li>
-          //   ))}
-          // </ul>
-          
+
           )}
         </div>
       )}
@@ -146,12 +184,56 @@ const Explore = () => {
       {showPopup && selectedDestination && (
         <div className="popup-overlay" onClick={() => setShowPopup(false)}>
           <div className="popup-content" onClick={(e) => e.stopPropagation()}>
+          <button className="close-btn" onClick={() => setShowPopup(false)}>✕</button>
+            {/* <h2>{selectedDestination.name}</h2>
+            <p>{selectedDestination.description}</p> */}
             <h2>{selectedDestination.name}</h2>
+            <img
+            src={destinationImages[selectedDestination.name] || "/images/default.jpg"}
+            alt={selectedDestination.name}
+            className="destination-image"
+            />
             <p>{selectedDestination.description}</p>
-            <p><strong>Country:</strong> {selectedDestination.country}</p>
-            <p><strong>Best Season:</strong> {selectedDestination.bestSeason}</p>
-            <p><strong>Top Hobbies:</strong> {selectedDestination.topHobbies?.join(", ")}</p>
+
+            {selectedDestination.country && (
+              <p><strong>Country:</strong> {selectedDestination.country}</p>
+            )}
+            <p><strong>Best Season:</strong> {selectedDestination.bestTimeToVisit}</p>
+            <p><strong>Top Hobbies:</strong> {selectedDestination.interests?.join(", ")}</p>
+
+            {selectedDestination.popularActivities?.length > 0 && (
+              <>
+              <p><strong>Popular Activities:</strong></p>
+              <ul>
+                {selectedDestination.popularActivities.map((activity, index) => (
+                  <li key={index}> {activity}</li>
+                ))}
+              </ul>
+              </>
+            )}
+
+{selectedDestination.culturalHighlights && (
+  <p><strong>Cultural Highlights:</strong> {selectedDestination.culturalHighlights}</p>
+)}
+
+{selectedDestination.averageCost && (
+  <p><strong>Estimated Average Cost:</strong> ${selectedDestination.averageCost}</p>
+)}
+
             <button onClick={() => setShowPopup(false)}>Close</button>
+            
+            {/* {selectedDestination && (
+  <div className="destination-popup">
+    <h3>{selectedDestination.name}</h3>
+    <p>{selectedDestination.description}</p>
+    {selectedDestination.country && (
+      <p><strong>Country:</strong> {selectedDestination.country}</p>
+    )}
+    <p><strong>Best Season:</strong> {selectedDestination.bestTimeToVisit}</p>
+    <p><strong>Top Hobbies:</strong> {selectedDestination.interests?.join(", ")}</p>
+    <button onClick={() => setShowPopup(false)}>Close</button>
+  </div>
+)} */}
           </div>
         </div>
       )}

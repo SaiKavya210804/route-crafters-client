@@ -31,7 +31,25 @@ const HobbySelection = () => {
   return (
     <div className="hobby-selection-container">
       <h2>Select Your Hobbies:</h2>
-      {["Hiking", "photography", "Surfing", "Skiing"].map((hobby) => (
+      {[
+        "Photography",
+        "Beaches",
+        "Culture",
+        "Trekking",
+        "Wildlife",
+        "Nature",
+        "History",
+        "Adventure",
+        "Architecture",
+        "Surfing",
+        "Exploration",
+        "Diving",
+        "Nightlife",
+        "Markets",
+        "Skiing",
+        "Mountaineering"
+    ].map((hobby) => (
+
         <label key={hobby}>
           <input type="checkbox" value={hobby} onChange={handleHobbyChange} />
           {hobby}
