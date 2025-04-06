@@ -16,7 +16,8 @@ import ProtectedRoute from "./components/ProtectedRoute"; // Import the Protecte
 import NavBar from "./components/NavBar";
 import CreateCommunity from "./components/CreateCommunity";
 import CommunityList from "./components/CommunityList";
-import ProtectedRoute from "./components/ProtectedRoute";
+import CommunityPage from "./pages/CommunityPage";
+
 
 // Import Services (To Ensure Services Are Included)
 import { getCommunities, createCommunity } from "./services/CommunityService";
@@ -39,6 +40,8 @@ function App() {
 
           <Route path="/about" element={<About />} />
           <Route path="/explore" element={<Explore />} />
+          <Route path="/communities" element={<CommunityPage />} />
+
         </Routes>
       </Router>
       </CommunityProvider>

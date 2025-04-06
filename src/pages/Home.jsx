@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
     <>
-      {/* ❌ REMOVED <Navbar /> */}
+      
       <HeroSection />
       <HobbiesSection />
       <Features />
@@ -28,9 +28,7 @@ const Home = () => {
       {showBackToTop && (
         <button
           className="back-to-top"
-          onClick={() => {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
           Back to Top
         </button>
