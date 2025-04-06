@@ -88,9 +88,9 @@ const Profile = () => {
     handleSave(`languages.${index}.${field}`, updatedLanguages[index][field]);
   };
 
-  const handleEditProfile = () => {
-    navigate("/EditProfile");
-  };
+  // const handleEditProfile = () => {
+  //   navigate("/EditProfile");
+  // };
 
   return (
     <div className="profile-container">

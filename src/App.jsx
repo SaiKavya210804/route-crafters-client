@@ -10,7 +10,7 @@ import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import About from "./pages/About";
 import Explore from "./pages/Explore";
-import CommunityPage from "./pages/CommunityPage";
+import ProtectedRoute from "./components/ProtectedRoute"; // Import the ProtectedRoute component
 
 // Import Components
 import NavBar from "./components/NavBar";
@@ -37,16 +37,10 @@ function App() {
             {/* Protected Dashboard Route */}
             <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
 
-            <Route path="/about" element={<About />} />
-            <Route path="/explore" element={<Explore />} />
-
-            {/* Community Related Routes */}
-            <Route path="/create-community" element={<CreateCommunity />} />
-            <Route path="/communities" element={<CommunityList />} />
-            <Route path="/community/:id" element={<CommunityPage />} />
-          </Routes>
-        </Router>
-      </CommunityProvider>
+          <Route path="/about" element={<About />} />
+          <Route path="/explore" element={<Explore />} />
+        </Routes>
+      </Router>
     </AuthProvider>
   );
 }
