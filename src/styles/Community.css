@@ -1,0 +1,42 @@
+.community-page {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .community-page h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .posts-section {
+    margin-top: 2rem;
+  }
+  
+  .posts-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .posts-list li {
+    background-color: #f1f1f1;
+    margin-bottom: 0.5rem;
+    padding: 0.75rem;
+    border-radius: 6px;
+  }
+  
+  .post-form {
+    margin-top: 2rem;
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .post-form input {
+    flex: 1;
+    padding: 0.5rem;
+  }
+  
+  .post-form button {
+    padding: 0.5rem 1rem;
+  }
+  
