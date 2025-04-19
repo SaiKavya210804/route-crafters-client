@@ -15,15 +15,25 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const response = await login(credentials.username, credentials.password);
-
-    if (response.data) {
-      alert(response.data.message);
-      navigate("/dashboard");
-    } else {
-      alert(response.data.message);
+  
+    try {
+      const response = await login(credentials.username, credentials.password);
+  
+      if (response?.data?.message) {
+        alert(response.data.message);
+        navigate("/dashboard");
+      } else {
+        alert("Login successful...");
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      const message =
+        error?.response?.data?.message || "Login failed. Please try again.";
+      console.error("Login error:", error);
+      alert(message);
     }
   };
+  
 
   return (
     <div className="login-container">
