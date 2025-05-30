@@ -29,7 +29,7 @@ const HobbiesSection = () => {
           </div>
         ))}
       </div>
-      <Link to="/hobbies" className="view-all-btn">View All</Link>
+      <Link to="/Explore" className="view-all-btn">View All</Link>
     </section>
   );
 };

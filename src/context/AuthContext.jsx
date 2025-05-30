@@ -37,6 +37,7 @@ export const AuthProvider = ({ children }) => {
     try {
       // Fetch users from the server
       const response = await axios.post("http://localhost:8080/api/users/login", {username, password}, {withCredentials: true});
+      setUser(response.data.user);
       setIsAuthenticated(true)
       return response
 

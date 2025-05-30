@@ -17,18 +17,26 @@ const Dashboard = () => {
     navigate("/login");
   };
 
+  const goToProfile = () => {
+    navigate("/profile"); // Adjust path as per your routing setup
+  };
+
+  const goToExplore = () => {
+    navigate("/explore"); // Adjust path as per your routing setup
+  };
+
   return (
     <div className="dashboard-container">
       <h1 className="dashboard-header">Welcome to Your Dashboard</h1>
       {user && <p className="dashboard-subtext">Hello, {user.email}!</p>}
 
       <div className="dashboard-content">
-        <div className="dashboard-card">
+        <div className="dashboard-card" onClick={goToProfile} style={{ cursor: "pointer" }}>
           <h3>Your Profile</h3>
           <p>Manage and update your personal details, hobbies, and preferences.</p>
         </div>
 
-        <div className="dashboard-card">
+        <div className="dashboard-card" onClick={goToExplore} style={{ cursor: "pointer" }}>
           <h3>Your Travel Plans</h3>
           <p>Explore new places, make plans, and create itineraries based on your hobbies.</p>
         </div>

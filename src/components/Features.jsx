@@ -23,7 +23,7 @@ const Features = () => {
             <div className="feature-icon">{feature.icon}</div>
             <h3>{feature.title}</h3>
             <p>{feature.desc}</p>
-            c
+            {/* c */}
           </div>
         ))}
       </div>
